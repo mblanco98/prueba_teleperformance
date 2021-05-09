@@ -1,0 +1,20 @@
+{
+  "api": [
+    {
+      "id": 0,
+      "firstName": "",
+      "secondName": "",
+      "firstLastName": "",
+      "secondLastName": "",
+      "email": "",
+      "address": "",
+      "state": "",
+      "cellphone": "",
+      "identificationType": "",
+      "identificationNumber": "",
+      "companyName": "",
+      "emailMarketing": false,
+      "messagesMarketing": false
+    }
+  ]
+}
