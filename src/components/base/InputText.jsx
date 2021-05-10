@@ -11,6 +11,8 @@ export const InputText = ({
   inputType = "text",
 }) => {
   const [value, setValue] = useState("");
+  const [error, setError] = useState(false);
+
   const handleChange = (e) => {
     // If we don't do this, the reference to the html input will be lost
     e.persist();
@@ -24,13 +26,18 @@ export const InputText = ({
       text: (s) => /^[A-Za-z\s]+$/.test(s),
     };
 
-    // If doesn't contain numbers
-    if (validate[inputType](v)) handleOnChange(v);
-    else {
+    // If doesn't contain numbers or is a valid email
+    if (validate[inputType](v)) {
+      if (inputType === 'email' && error) setError(false)
+      handleOnChange(v);
+    } else if (!inputType === 'email') {
       // Else remove those numbers and send the formattedString
       const formattedValue = v.replace(/[0-9]/g, "");
       handleOnChange(formattedValue);
       setValue(formattedValue);
+    } else {
+      setError(true)
+      handleOnChange(v)
     }
   };
 
@@ -45,6 +52,11 @@ export const InputText = ({
         onChange={handleChange}
         placeholder={inputPlaceholder}
       />
+      {error && inputType !== "text" && (
+        <p className="absolute -bottom-5 left-0 text-red-400 text-xs">
+          Invalid email
+        </p>
+      )}
     </div>
   );
 };
