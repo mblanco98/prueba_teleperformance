@@ -30,7 +30,7 @@ export const Login = ({ loginRequest }) => {
   return (
     <Card title="Ingrese el NIT de la persona natural o juridica para la que realizara el tramite, sin incluir el digito de verificacion. Luego seleccione <strong>Continuar</strong> para completar su solicitud">
       <Form className="mt-8" handleOnSubmit={handleSubmit}>
-        <FormItem label="Company NIT">
+        <FormItem label="Company NIT" isSrOnly={true}>
           <InputNumber
             inputName="nit"
             inputValue={nit}

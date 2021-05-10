@@ -36,7 +36,7 @@ export const RegisterCard = ({ registerRequest }) => {
   return (
     <Card title="Registro">
       <Form handleOnSubmit={handleSubmit}>
-        <FormItem label="First name">
+        <FormItem label="First name" required>
           <InputText
             inputName="first-name"
             inputValue={form.firstName}
