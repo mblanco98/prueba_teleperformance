@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Card } from "./base/Card";
+import { Form } from "./base/Form";
 import { FormItem } from "./base/FormItem";
 import { InputText } from "./base/InputText";
 import PropTypes from "prop-types";
@@ -28,13 +29,13 @@ export const RegisterCard = ({ registerRequest }) => {
     });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = () => {
+    console.log(form)
   };
 
   return (
     <Card title="Registro">
-      <form onSubmit={handleSubmit}>
+      <Form handleOnSubmit={handleSubmit}>
         <FormItem label="First name">
           <InputText
             inputName="first-name"
@@ -42,7 +43,7 @@ export const RegisterCard = ({ registerRequest }) => {
             handleOnChange={handleInputChange}
           />
         </FormItem>
-      </form>
+      </Form>
       <footer className="flex h-20 mt-2">
         <span>
           Los campos marcados con <b className="text-red-300">*</b> son
