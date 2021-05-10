@@ -5,7 +5,7 @@ export const Form = ({ children, handleOnSubmit }) => {
     e.preventDefault()
     handleOnSubmit()
   }
-  return <form className="p-2 bg-white text-base" onSubmit={onSubmit}>{children}</form>;
+  return <form className="p-4 pt-6 rounded-md bg-white text-base" onSubmit={onSubmit}>{children}</form>;
 }
 
 Form.propTypes = {
