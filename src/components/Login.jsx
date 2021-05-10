@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Card } from "./base/Card";
+import { Form } from './base/Form';
 import { Button } from "./base/Button";
 import { FormItem } from "./base/FormItem";
 import PropTypes from "prop-types";
@@ -9,8 +10,7 @@ export const Login = ({ loginRequest }) => {
   const [errors, setErrors] = useState([]);
   const [nit, setNit] = useState('');
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = () => {
     if (!nit) {
       setErrors(["Company NIT field is required"]);
       console.log(errors);
@@ -31,7 +31,7 @@ export const Login = ({ loginRequest }) => {
       data-testid="login-container"
     >
       <Card title="Ingrese el NIT de la persona natural o juridica para la que realizara el tramite, sin incluir el digito de verificacion. Luego seleccione <strong>Continuar</strong> para completar su solicitud">
-        <form className="mt-8" onSubmit={handleSubmit}>
+        <Form className="mt-8" handleOnSubmit={handleSubmit}>
           <FormItem label="Company NIT">
             <InputNumber
               inputName="nit"
@@ -50,7 +50,7 @@ export const Login = ({ loginRequest }) => {
               handleClick={handleSubmit}
             />
           </footer>
-        </form>
+        </Form>
       </Card>
     </div>
   );
