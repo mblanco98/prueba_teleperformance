@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 
 export const Card = ({ title = "", children }) => {
   return (
-    <div className="max-w-md lg:max-w-lg xl:max-w-xl w-full space-y-8">
+    <div className="max-w-md lg:max-w-lg xl:max-w-xl w-full space-y-8 bg-white rounded-md p-4">
       <header className="card_header">
         <img
           className="card_header-logo mx-auto h-12 w-auto"
