@@ -17,7 +17,7 @@ export const FormItem = ({ label, children, isSrOnly = false, required = false }
       <label htmlFor={htmlFor} className={isSrOnly ? "sr-only" : "text-sm mb-1 inline-block text-gray-600"}>
         { renderLabel() }
       </label>
-      <div className="pb-2">
+      <div className="pb-1">
         { children }
       </div>
     </div>
