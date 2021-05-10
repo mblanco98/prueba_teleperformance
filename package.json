@@ -27,7 +27,7 @@
   },
   "scripts": {
     "serve": "cross-env PORT=8081 craco start",
-    "serve:server": "cd ./fake_api && json-server db.json",
+    "serve:server": "cd ./fake_api && npm install && json-server db.json",
     "build": "craco build",
     "test": "craco test",
     "eject": "react-scripts eject"
