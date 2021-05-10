@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 export const Card = ({ title = "", children }) => {
   return (
     <div className="max-w-md lg:max-w-lg xl:max-w-xl w-full space-y-8">
@@ -14,9 +16,12 @@ export const Card = ({ title = "", children }) => {
           {title}
         </h2>
       </header>
-      <div className="card_body">
-        {children}
-      </div>
+      <div className="card_body">{children}</div>
     </div>
   );
+};
+
+Card.propTypes = {
+  title: PropTypes.string.isRequired,
+  children: PropTypes.node,
 }
