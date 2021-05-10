@@ -13,11 +13,13 @@ export const FormItem = ({ label, children, isSrOnly = false, required = false }
   }
 
   return (
-    <div className="rounded-md shadow-sm -space-y-px">
+    <div className="rounded-md -space-y-px">
       <label htmlFor={htmlFor} className={isSrOnly ? "sr-only" : "text-sm mb-1 inline-block text-gray-600"}>
         { renderLabel() }
       </label>
-      { children }
+      <div className="pb-2">
+        { children }
+      </div>
     </div>
   );
 }

@@ -66,10 +66,9 @@ export const RegisterCard = ({ registerRequest }) => {
 
   return (
     <Card title="Registro">
-      <header className="pl-2">
+      <header className="p-2 ml-4 mr-4 bg-yellow-100">
         <p className="text-xs text-gray-500 ml-2">
-          Los campos marcados con <b className="text-red-400">*</b> son
-          requeridos.
+          The fields with <b className="text-red-400">*</b> are required.
         </p>
       </header>
       <Form handleOnSubmit={handleSubmit}>
@@ -120,6 +119,13 @@ export const RegisterCard = ({ registerRequest }) => {
             inputName="identification-number"
             inputValue={form.identificationNumber}
             handleOnChange={(v) => handleInputChange("identificationNumber", v)}
+          />
+        </FormItem>
+        <FormItem label="Cellphone number" required>
+          <InputNumber
+            inputName="cellphone-number"
+            inputValue={form.cellphone}
+            handleOnChange={(v) => handleInputChange("cellphone", v)}
           />
         </FormItem>
         <FormItem label="Company name" required>
