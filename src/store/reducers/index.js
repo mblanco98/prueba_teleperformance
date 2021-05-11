@@ -8,6 +8,11 @@ export const reducer = (state = initialState, { type, payload }) => {
         ...state,
         user: payload,
       }
+    case types.TOGGLE_NOTIFICATION:
+      return {
+        ...state,
+        notification: payload,
+      }
     default:
       return state;
   }
