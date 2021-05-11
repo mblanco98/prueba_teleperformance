@@ -4,6 +4,7 @@ import { Form } from "./base/Form";
 import { Button } from "./base/Button";
 import { FormItem } from "./base/FormItem";
 import { InputText } from "./base/InputText";
+import { InputPhone } from "./base/InputPhone";
 import { InputNumber } from "./base/InputNumber";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
@@ -138,8 +139,7 @@ export const RegisterCard = ({ registerRequest }) => {
           </div>
           <div className="col-span-6 sm:col-span-2">
             <FormItem label="Cellphone number" required>
-              <InputNumber
-                inputName="cellphone-number"
+              <InputPhone
                 inputValue={form.cellphone}
                 handleOnChange={(v) => handleInputChange("cellphone", v)}
               />

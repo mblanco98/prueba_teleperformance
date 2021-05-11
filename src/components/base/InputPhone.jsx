@@ -12,9 +12,13 @@ export const InputPhone = ({ handleOnChange, inputValue }) => {
   }
 
   return (
-    <PhoneInput placeholder="Enter phone number" value={phone} onChange={handleChange} 
+    <PhoneInput
+      placeholder="Enter phone number"
+      value={phone}
+      onChange={handleChange}
+      withCountryCallingCode={true}
     />
-  )
+  );
 }
 
 InputPhone.propTypes = {
