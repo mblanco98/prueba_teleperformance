@@ -34,6 +34,5 @@ function setupWithoutErrors() {
 test("Renders value correctly when input doesn't have errors", () => {
   const { container, getByTestId } = setupWithoutErrors();
   expect(getByTestId("input_element").placeholder).toBeFalsy();
-  console.log(container.nodeValue)
   expect(container.nodeValue).toBe(4.42)
 });
