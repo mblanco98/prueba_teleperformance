@@ -2,7 +2,7 @@ import { useState } from 'react'
 import PropTypes from 'prop-types'
 
 export const CheckBox = ({
-  inputName,
+  inputName = "",
   inputValue,
   children,
   label,
@@ -40,7 +40,7 @@ export const CheckBox = ({
 
 CheckBox.propTypes = {
   children: PropTypes.node,
+  inputName: PropTypes.string,
   inputValue: PropTypes.string,
-  inputName: PropTypes.string.isRequired,
   handleOnChange: PropTypes.func.isRequired,
 };
