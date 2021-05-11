@@ -1,7 +1,7 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
-import { ReactComponent as ArrowDownIcon } from "../../assets/arrow-down-outline.svg";
-import { ReactComponent as ArrowUpIcon } from "../../assets/arrow-up-outline.svg";
+import { ReactComponent as ArrowDownIcon } from "../../assets/icons/arrow-down-outline.svg";
+import { ReactComponent as ArrowUpIcon } from "../../assets/icons/arrow-up-outline.svg";
 
 export const InputNumber = ({
   max,
