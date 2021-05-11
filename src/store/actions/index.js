@@ -13,16 +13,29 @@ export const registerRequest = payload => {
 
 export const loginRequest = payload => {
   return async dispatch => {
-    const { message, code } = await checkNIT(payload)
-    
-    dispatch(toggleNotification({
-      title: code,
-      visible: true,
-      description: message,
-      type: code === '' ? 'info' : 'error',
-    }))
+    try {
+      const { message, code } = await checkNIT(payload)
+      
+      dispatch(toggleNotification({
+        title: code,
+        visible: true,
+        description: message,
+        type: code === '' ? 'info' : 'error',
+      }))
 
-    return !!code
+      return !!code
+    } catch (err) {
+      dispatch(
+        toggleNotification({
+          type: "error",
+          visible: true,
+          title: 'Something went wrong ...',
+          description: "We couldn't with the server",
+        })
+      );
+      return false
+    }
+    
   }
 }
 
