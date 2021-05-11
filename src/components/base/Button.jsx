@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types'
+
 export const Button = ({ btnType = "button", type = "regular", title, handleClick }) => {
   const classesPerType = {
     regular:
@@ -12,3 +14,9 @@ export const Button = ({ btnType = "button", type = "regular", title, handleClic
     </button>
   );
 };
+
+Button.propTypes = {
+  type: PropTypes.string,
+  btnType: PropTypes.string,
+  handleClick: PropTypes.func.isRequired,
+}
