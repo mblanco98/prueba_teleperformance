@@ -7,16 +7,20 @@ export const registerUser = async (data) => {
     const keys = Object.keys(data);
 
     keys.forEach((key) => {
-      params.append(key, data[key]);
+      if (typeof data[key] !== 'string') {
+        params.append(key, JSON.stringify(data[key]));
+      } else {
+        params.append(key, data[key]);
+      }
     });
 
-    const res = await $axios.post("/api", params, {
+    const res = await $axios.post(`${config.baseUrl}/users`, params, {
       headers: config.headersPost,
     });
 
     return res;
   } catch (err) {
-    console.error(err);
+    return err
   }
 };
 
@@ -39,7 +43,7 @@ export const getFullAddress = async (s) => {
     }`;
     const { data } = await $axios.get(url)
     return data.features.map(({ place_name, id, context }) => ({ id, place_name, context }))
-  } catch (err) {
-    console.error(err)
+  } catch {
+    return []
   }
 }
