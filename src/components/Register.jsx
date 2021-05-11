@@ -10,7 +10,8 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { CheckBox } from "./base/CheckBox";
 import { Select } from "./base/Select";
-import { countriesAvailable, documentTypes } from "../data";
+import { documentTypes } from "../data";
+import { InputAddress } from "./base/InputAddress";
 
 export const RegisterCard = ({ registerRequest }) => {
   const [form, setForm] = useState({
@@ -19,8 +20,18 @@ export const RegisterCard = ({ registerRequest }) => {
     firstLastName: "",
     secondLastName: "",
     email: "",
-    address: "",
-    countryState: "",
+    address: {
+      place_id: "",
+      region: {
+        name: "",
+        id: "",
+      },
+      country: {
+        name: "",
+        id: "",
+      },
+      fullAddress: "",
+    },
     cellphone: "",
     identificationType: "",
     identificationNumber: "",
@@ -36,8 +47,37 @@ export const RegisterCard = ({ registerRequest }) => {
     });
   };
 
-  const handleSubmit = () => {
-    registerRequest(form)
+  const handleSubmit = async () => {
+    await registerRequest(form);
+  };
+
+  const handleAddressInputChange = ({ place_name, id, context }) => {
+    const address = {
+      place_id: id,
+      region: {
+        name: "",
+        id: "",
+      },
+      country: {
+        name: "",
+        id: "",
+      },
+      fullAddress: place_name,
+    };
+
+    if (context.length) {
+      for (let item of context) {
+        if (item.id.includes("region")) {
+          address.region.id = item.text;
+          address.region.name = item.id;
+        } else if (item.id.includes("country")) {
+          address.country.name = item.text;
+          address.country.id = item.id;
+        }
+      }
+    }
+
+    handleInputChange("address", address);
   };
 
   const IdTypeIsNitOrForeignerId =
@@ -55,10 +95,9 @@ export const RegisterCard = ({ registerRequest }) => {
       </div>
       <Form handleOnSubmit={handleSubmit}>
         <div className="grid grid-cols-6 gap-3">
-          
           {IdTypeIsNitOrForeignerId && (
             <div className="col-span-6">
-              <FormItem label="Company name" required>
+              <FormItem label="Company name" required model={form.companyName}>
                 <InputText
                   inputType="text"
                   inputName="company-name"
@@ -72,7 +111,7 @@ export const RegisterCard = ({ registerRequest }) => {
           {!IdTypeIsNitOrForeignerId && (
             <>
               <div className="col-span-6 sm:col-span-2">
-                <FormItem label="First name" required>
+                <FormItem label="First name" required model={form.firstName}>
                   <InputText
                     inputType="text"
                     inputName="first-name"
@@ -82,7 +121,7 @@ export const RegisterCard = ({ registerRequest }) => {
                 </FormItem>
               </div>
               <div className="col-span-6 sm:col-span-4">
-                <FormItem label="Second name" required>
+                <FormItem label="Second name" required model={form.secondName}>
                   <InputText
                     inputType="text"
                     inputName="second-name"
@@ -92,7 +131,11 @@ export const RegisterCard = ({ registerRequest }) => {
                 </FormItem>
               </div>
               <div className="col-span-6 sm:col-span-2">
-                <FormItem label="First last name" required>
+                <FormItem
+                  label="First last name"
+                  required
+                  model={form.firstLastName}
+                >
                   <InputText
                     inputType="text"
                     inputName="first-last-name"
@@ -104,7 +147,11 @@ export const RegisterCard = ({ registerRequest }) => {
                 </FormItem>
               </div>
               <div className="col-span-6 sm:col-span-4">
-                <FormItem label="Second last name" required>
+                <FormItem
+                  label="Second last name"
+                  required
+                  model={form.secondLastName}
+                >
                   <InputText
                     inputType="text"
                     inputName="second-last-name"
@@ -119,7 +166,7 @@ export const RegisterCard = ({ registerRequest }) => {
           )}
 
           <div className="col-span-6">
-            <FormItem label="Email" required>
+            <FormItem label="Email" required model={form.email}>
               <InputText
                 inputType="email"
                 inputName="email"
@@ -128,17 +175,18 @@ export const RegisterCard = ({ registerRequest }) => {
               />
             </FormItem>
           </div>
+
           <div className="col-span-6">
-            <FormItem label="Country" required>
-              <Select
-                inputValue={form.countryState}
-                options={countriesAvailable}
-                handleOnChange={(v) => handleInputChange("countryState", v)}
+            <FormItem label="Address" required model={form.address.fullAddress}>
+              <InputAddress
+                inputValue={form.address.fullAddress}
+                handleOnChange={handleAddressInputChange}
               />
             </FormItem>
           </div>
+
           <div className="col-span-6 sm:col-span-2">
-            <FormItem label="Cellphone number" required>
+            <FormItem label="Cellphone number" required model={form.cellphone}>
               <InputPhone
                 inputValue={form.cellphone}
                 handleOnChange={(v) => handleInputChange("cellphone", v)}
@@ -146,7 +194,11 @@ export const RegisterCard = ({ registerRequest }) => {
             </FormItem>
           </div>
           <div className="col-span-6 sm:col-span-2">
-            <FormItem label="Identification number" required>
+            <FormItem
+              label="Identification number"
+              required
+              form={form.identificationNumber}
+            >
               <InputNumber
                 inputName="identification-number"
                 inputValue={form.identificationNumber}
@@ -157,7 +209,11 @@ export const RegisterCard = ({ registerRequest }) => {
             </FormItem>
           </div>
           <div className="col-span-6 sm:col-span-2">
-            <FormItem label="Identification type" required>
+            <FormItem
+              label="Identification type"
+              required
+              form={form.identificationType}
+            >
               <Select
                 inputValue={form.identificationType}
                 options={documentTypes}
