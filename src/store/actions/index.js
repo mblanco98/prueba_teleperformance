@@ -3,11 +3,32 @@ import { checkNIT, registerUser } from '../../services'
 
 export const registerRequest = payload => {
   return async dispatch => {
-    await registerUser(payload)
-    dispatch({
-      type: types.REGISTER_USER,
-      payload,
-    });
+    try {
+      const res = await registerUser(payload);
+      
+      if (res) {
+        dispatch({
+          type: types.REGISTER_USER,
+          payload,
+        });
+
+        dispatch(
+          toggleNotification({
+            title: 'Success!',
+            type: 'success',
+            visible: true,
+            description: 'The data has been registered correctly.',
+          })
+        );
+      }
+    } catch (err) {
+      dispatch(toggleNotification({
+        type: 'error',
+        visible: true,
+        description: '',
+        title: 'Something went wrong',
+      }))
+    }
   }
 }
 
