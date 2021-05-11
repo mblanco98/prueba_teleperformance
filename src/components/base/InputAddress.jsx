@@ -16,7 +16,7 @@ export const InputAddress = ({ handleOnChange, inputValue }) => {
   const handleChange = async (e) => {
     e.persist();
     setValue(e.target.value);
-
+    
     const results = await getFullAddress(e.target.value);
     setResults(results);
     setOptionsVisibility(true);
@@ -49,6 +49,7 @@ export const InputAddress = ({ handleOnChange, inputValue }) => {
   };
 
   const renderOptions = () => {
+    if (!results.length) return null
     return (
       isOptionsVisible && (
         <div
