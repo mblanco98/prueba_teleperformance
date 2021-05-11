@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { ReactComponent as ArrowDownIcon } from "../../assets/icons/arrow-down-outline.svg";
 import { ReactComponent as ArrowUpIcon } from "../../assets/icons/arrow-up-outline.svg";
@@ -14,6 +14,11 @@ export const InputNumber = ({
   controls = false,
 }) => {
   const [value, setValue] = useState("");
+
+  useEffect(() => {
+    setValue(inputValue);
+  }, [inputValue]);
+  
   const handleChange = (e) => {
     // If we don't do this, the reference to the html input will be lost
     e.persist();

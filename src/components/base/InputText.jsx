@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { validateEmail } from "../../helpers/validateEmail";
 import PropTypes from 'prop-types'
 
@@ -12,6 +12,10 @@ export const InputText = ({
 }) => {
   const [value, setValue] = useState("");
   const [error, setError] = useState(false);
+
+  useEffect(() => {
+    setValue(inputValue);
+  }, [inputValue]);
 
   const handleChange = (e) => {
     // If we don't do this, the reference to the html input will be lost

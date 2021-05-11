@@ -1,10 +1,14 @@
 import 'react-phone-number-input/style.css'
 import PhoneInput from 'react-phone-number-input'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 
 export const InputPhone = ({ handleOnChange, inputValue }) => {
   const [phone, setPhone] = useState('')
+
+  useEffect(() => {
+    setPhone(inputValue);
+  }, [inputValue]);
 
   const handleChange = (v) => {
     setPhone(v)

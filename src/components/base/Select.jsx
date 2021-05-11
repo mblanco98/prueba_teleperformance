@@ -1,9 +1,14 @@
+import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types'
-import { useState } from 'react';
 import ISelect from 'react-select'
 
 export const Select = ({ options, inputValue, handleOnChange }) => {
   const [selected, setSelected] = useState(null)
+  
+  useEffect(() => {
+    setSelected(inputValue);
+  }, [inputValue]);
+
   const handleChange = (data) => {
     setSelected(data)
     handleOnChange(data.value)

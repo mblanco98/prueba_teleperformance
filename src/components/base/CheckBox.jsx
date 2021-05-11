@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 
 export const CheckBox = ({
@@ -10,6 +10,10 @@ export const CheckBox = ({
 }) => {
   const htmlFor = label.toLowerCase().trim().replace(" ", "-");
   const [value, setValue] = useState(false);
+
+  useEffect(() => {
+    setValue(inputValue);
+  }, [inputValue]);
 
   const handleChange = () => {
     let newValue = !value
