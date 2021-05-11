@@ -4,7 +4,7 @@ export const config = {
   headersPost: {
     'Content-Type': 'application/x-www-form-urlencoded'
   },
-  baseUrl: 'http://localhost:3000',
+  baseUrl: process.env.API_URL,
   isDevelopment: process.env.NODE_ENV === 'development',
 }
 
