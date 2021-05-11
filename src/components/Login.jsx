@@ -16,8 +16,8 @@ export const Login = ({ loginRequest, history }) => {
       return
     }
 
-    const canRegister = await loginRequest({ nit })
-    if (canRegister) {
+    const code = await loginRequest({ nit })
+    if (code === '') {
       history.push({
         pathname: "/register",
         search: `?r=${nit}`

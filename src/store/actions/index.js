@@ -23,7 +23,7 @@ export const loginRequest = payload => {
         type: code === '' ? 'info' : 'error',
       }))
 
-      return !!code
+      return code
     } catch (err) {
       dispatch(
         toggleNotification({
