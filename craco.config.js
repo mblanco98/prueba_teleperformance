@@ -8,13 +8,17 @@ module.exports = {
     },
   },
   webpack: {
-    configure: (webpackConfig, { env }) => {
-      let config = webpackConfig
-      config.plugins.push(
+    configure: (webpackConfig) => {
+      webpackConfig.plugins.push(
         new webpack.DefinePlugin({
           GOOGLE_PLACES_APIKEY: JSON.stringify(
             process.env.GOOGLE_PLACES_APIKEY
           ),
+        })
+      );
+      webpackConfig.plugins.push(
+        new webpack.DefinePlugin({
+          "process.env.API_URL": JSON.stringify(process.env.API_URL),
         })
       );
       return webpackConfig
