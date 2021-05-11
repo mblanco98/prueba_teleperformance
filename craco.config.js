@@ -12,7 +12,9 @@ module.exports = {
       let config = webpackConfig
       config.plugins.push(
         new webpack.DefinePlugin({
-          "GOOGLE_PLACES_APIKEY": process.env.GOOGLE_PLACES_APIKEY,
+          GOOGLE_PLACES_APIKEY: JSON.stringify(
+            process.env.GOOGLE_PLACES_APIKEY
+          ),
         })
       );
       return webpackConfig
