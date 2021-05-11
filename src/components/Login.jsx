@@ -10,20 +10,19 @@ export const Login = ({ loginRequest, history }) => {
   const [errors, setErrors] = useState([]);
   const [nit, setNit] = useState("");
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (!nit) {
       setErrors(["Company NIT field is required"]);
       return
     }
-    const canRegister = loginRequest({ nit })
-    setTimeout(() => {
-      if (canRegister) {
-        history.push({
-          pathname: "/register",
-          search: `?r=${nit}`
-        });
-      }
-    }, 200);
+
+    const canRegister = await loginRequest({ nit })
+    if (canRegister) {
+      history.push({
+        pathname: "/register",
+        search: `?r=${nit}`
+      });
+    }
   };
 
   const handleInputChange = (value) => {
