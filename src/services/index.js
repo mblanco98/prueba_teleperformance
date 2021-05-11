@@ -28,3 +28,18 @@ export const checkNIT = async ({ nit }) => {
     console.error(err);
   }
 };
+
+
+export const getFullAddress = async (s) => {
+  try {
+    const url = `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(
+      s
+    )}.json?autocomplete=true&limit=10&types=country,region,postcode,district,place,locality,neighborhood,address&access_token=${
+      process.env.MAPBOX_API_PLACES
+    }`;
+    const { data } = await $axios.get(url)
+    return data.features.map(({ place_name, id, context }) => ({ id, place_name, context }))
+  } catch (err) {
+    console.error(err)
+  }
+}

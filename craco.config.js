@@ -11,9 +11,7 @@ module.exports = {
     configure: (webpackConfig) => {
       webpackConfig.plugins.push(
         new webpack.DefinePlugin({
-          GOOGLE_PLACES_APIKEY: JSON.stringify(
-            process.env.GOOGLE_PLACES_APIKEY
-          ),
+          "process.env.MAPBOX_API_PLACES": JSON.stringify(process.env.MAPBOX_API_PLACES),
         })
       );
       webpackConfig.plugins.push(
