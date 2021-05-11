@@ -47,11 +47,11 @@ export const RegisterCard = ({ registerRequest }) => {
 
   return (
     <Card title="">
-      <header className="p-2 ml-4 mr-4 bg-yellow-100">
+      <div className="p-2 ml-4 mr-4 bg-yellow-100">
         <p className="text-xs text-gray-500 ml-2">
           The fields marked with <b className="text-red-400">*</b> are required.
         </p>
-      </header>
+      </div>
       <Form handleOnSubmit={handleSubmit}>
         <div className="grid grid-cols-6 gap-3">
           
