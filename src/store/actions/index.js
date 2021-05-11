@@ -30,7 +30,7 @@ export const loginRequest = payload => {
           type: "error",
           visible: true,
           title: 'Something went wrong ...',
-          description: "We couldn't with the server",
+          description: "We couldn't connect with the server",
         })
       );
       return false
