@@ -6,15 +6,24 @@ import { FormItem } from "./base/FormItem";
 import PropTypes from "prop-types";
 import { InputNumber } from "./base/InputNumber";
 
-export const Login = ({ loginRequest }) => {
+export const Login = ({ loginRequest, history }) => {
   const [errors, setErrors] = useState([]);
   const [nit, setNit] = useState("");
 
   const handleSubmit = () => {
     if (!nit) {
       setErrors(["Company NIT field is required"]);
-      console.log(errors);
+      return
     }
+    const canRegister = loginRequest({ nit })
+    setTimeout(() => {
+      if (canRegister) {
+        history.push({
+          pathname: "/register",
+          search: `?r=${nit}`
+        });
+      }
+    }, 200);
   };
 
   const handleInputChange = (value) => {

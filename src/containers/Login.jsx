@@ -1,9 +1,9 @@
 import { connect } from 'react-redux'
 import { Login as LoginCard } from '../components/Login'
-// import { loginRequest } from '../store/actions'
+import { loginRequest } from '../store/actions'
 
 const mapDispatchToProps = {
-  loginRequest: () => {},
+  loginRequest,
 }
 
 export const Login = connect(null, mapDispatchToProps)(LoginCard)
