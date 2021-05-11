@@ -1,4 +1,3 @@
-import dotenv from 'dotenv'
 import React from "react";
 import ReactDOM from "react-dom";
 import { App } from "./routes/index";
@@ -6,8 +5,6 @@ import "./assets/main.css";
 import { Provider } from "react-redux";
 import reportWebVitals from "./utils/reportWebVitals";
 import { store } from "./store";
-
-dotenv.config()
 
 ReactDOM.render(
   <React.StrictMode>
