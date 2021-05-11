@@ -9,12 +9,14 @@ export const Card = ({ title = "", children }) => {
           src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
           alt=""
         />
-        <h2
-          data-testid="card_header-title"
-          className="card_title mt-6 text-center font-semibold text-1xl text-gray-900"
-        >
-          {title}
-        </h2>
+        {title && (
+          <h2
+            data-testid="card_header-title"
+            className="card_title mt-6 text-center font-semibold text-1xl text-gray-900"
+          >
+            {title}
+          </h2>
+        )}
       </header>
       <div className="card_body">{children}</div>
     </div>
@@ -22,6 +24,6 @@ export const Card = ({ title = "", children }) => {
 };
 
 Card.propTypes = {
-  title: PropTypes.string.isRequired,
+  title: PropTypes.string,
   children: PropTypes.node,
-}
+};
